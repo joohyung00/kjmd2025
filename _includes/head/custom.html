@@ -4,3 +4,27 @@
 <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
 
 <!-- end custom head snippets -->
+<!-- Custom dropdown script -->
+<script defer src="{{ '/assets/js/dropdown-navigation.js' | relative_url }}"></script>
+
+<!-- Minimal CSS so the dropdown can open/close -->
+<style>
+  .masthead__menu-item.has-dropdown { position: relative; }
+  .masthead__menu-item.has-dropdown > .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background: #fff;
+    min-width: 220px;
+    border: 1px solid rgba(0,0,0,.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    padding: .5rem 0;
+  }
+  .masthead__menu-item.has-dropdown.dropdown-active > .dropdown-menu { display: block; }
+  /* Nice-to-have: still open on hover for pointer devices */
+  @media (hover:hover) {
+    .masthead__menu-item.has-dropdown:hover > .dropdown-menu { display: block; }
+  }
+</style>

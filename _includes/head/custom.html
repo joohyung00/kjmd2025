@@ -27,4 +27,17 @@
   @media (hover:hover) {
     .masthead__menu-item.has-dropdown:hover > .dropdown-menu { display: block; }
   }
+
+  /* allow dropdowns to escape the nav bar */
+  .masthead,
+  .masthead__inner-wrap,
+  .masthead__menu,
+  .greedy-nav { overflow: visible !important; }
+
+  /* make sure dropdowns layer above the header/content */
+  .masthead { position: relative; z-index: 100; }
+  .masthead__menu-item.has-dropdown > .dropdown-menu { z-index: 1000; }
+
+  /* click affordance */
+  .dropdown-toggle { cursor: pointer; display:inline-flex; align-items:center; gap:.35rem; }
 </style>

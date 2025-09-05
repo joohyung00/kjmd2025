@@ -6,6 +6,32 @@
   position: relative;
 
   &.has-dropdown {
+    // Style for non-clickable parent items
+    .dropdown-toggle {
+      display: block;
+      margin: 0 1rem;
+      color: $masthead-link-color;
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-transition: none;
+      transition: none;
+
+      &:hover {
+        color: $masthead-link-color-hover;
+      }
+
+      i {
+        font-size: 0.8em;
+        margin-left: 5px;
+        transition: transform 0.2s ease;
+      }
+
+      // Remove the underline animation from parent items
+      &:before {
+        display: none !important;
+      }
+    }
+
     .dropdown-menu {
       position: absolute;
       top: 100%;
@@ -43,7 +69,7 @@
           }
 
           &:before {
-            display: none; // Remove the underline animation from main nav
+            display: none !important; // Remove the underline animation from dropdown items
           }
         }
 
@@ -78,18 +104,14 @@
       }
     }
 
+    // Show dropdown on hover
     &:hover .dropdown-menu {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
 
-    .dropdown-toggle i {
-      font-size: 0.8em;
-      margin-left: 5px;
-      transition: transform 0.2s ease;
-    }
-
+    // Rotate chevron on hover
     &:hover .dropdown-toggle i {
       transform: rotate(180deg);
     }

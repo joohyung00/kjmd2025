@@ -104,15 +104,15 @@
       }
     }
 
-    // Show dropdown on hover
-    &:hover .dropdown-menu {
+    // Show dropdown when active (clicked)
+    &.dropdown-active .dropdown-menu {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
 
-    // Rotate chevron on hover
-    &:hover .dropdown-toggle i {
+    // Rotate chevron when active
+    &.dropdown-active .dropdown-toggle i {
       transform: rotate(180deg);
     }
   }
@@ -123,13 +123,16 @@
   .masthead__menu-item.has-dropdown {
     .dropdown-menu {
       position: static;
-      opacity: 1;
-      visibility: visible;
-      transform: none;
       box-shadow: none;
       border: none;
       background: transparent;
       margin-top: 0;
+      // Keep initial hidden state for mobile
+      opacity: 0;
+      visibility: hidden;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
 
       &:before,
       &:after {
@@ -141,6 +144,13 @@
         border-bottom: none;
         background: rgba($primary-color, 0.05);
       }
+    }
+
+    &.dropdown-active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      max-height: 500px; // Enough to show all items
+      transform: none;
     }
   }
 }

@@ -325,3 +325,7 @@ defaults:
       comments: # true
       share: true
       related: true
+
+# Custom Scripts
+after_footer_scripts:
+  - /assets/js/dropdown-navigation.js

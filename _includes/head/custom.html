@@ -5,10 +5,17 @@
 
 <!-- end custom head snippets -->
 <!-- Custom dropdown script -->
-<script defer src="{{ '/assets/js/dropdown-navigation.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/dropdown-navigation.js?v=3' | relative_url }}"></script>
 
 <!-- Minimal CSS so the dropdown can open/close -->
 <style>
+  /* let dropdowns escape the bar */
+  .greedy-nav,
+  .masthead,
+  .masthead__inner-wrap,
+  .masthead__menu { overflow: visible !important; }
+
+  .masthead { position: relative; z-index: 100; }
   .masthead__menu-item.has-dropdown { position: relative; }
   .masthead__menu-item.has-dropdown > .dropdown-menu {
     display: none;
@@ -23,21 +30,17 @@
     padding: .5rem 0;
   }
   .masthead__menu-item.has-dropdown.dropdown-active > .dropdown-menu { display: block; }
-  /* Nice-to-have: still open on hover for pointer devices */
+
+  /* Optional: open on hover for pointer devices */
   @media (hover:hover) {
     .masthead__menu-item.has-dropdown:hover > .dropdown-menu { display: block; }
   }
 
-  /* allow dropdowns to escape the nav bar */
-  .masthead,
-  .masthead__inner-wrap,
-  .masthead__menu,
-  .greedy-nav { overflow: visible !important; }
-
-  /* make sure dropdowns layer above the header/content */
-  .masthead { position: relative; z-index: 100; }
-  .masthead__menu-item.has-dropdown > .dropdown-menu { z-index: 1000; }
-
-  /* click affordance */
-  .dropdown-toggle { cursor: pointer; display:inline-flex; align-items:center; gap:.35rem; }
+  /* make the toggle look like a normal nav link */
+  .greedy-nav .visible-links > li > a.dropdown-toggle {
+    text-decoration: none;
+    padding: 0;           /* match anchor look */
+    background: none;
+    border: 0;
+  }
 </style>

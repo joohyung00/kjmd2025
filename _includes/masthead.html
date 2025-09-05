@@ -15,9 +15,9 @@
           {%- for link in site.data.navigation.main -%}
             <li class="masthead__menu-item{% if link.children %} has-dropdown{% endif %}">
               {% if link.children %}
-                <button type="button" class="dropdown-toggle" aria-expanded="false">
+                <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">
                   {{ link.title }} <i class="fas fa-chevron-down"></i>
-                </button>
+                </a>
               {% else %}
                 <a
                   href="{{ link.url | relative_url }}"

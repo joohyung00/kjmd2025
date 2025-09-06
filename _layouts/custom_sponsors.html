@@ -48,7 +48,111 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-        {{ content }}
+
+
+
+        <!-- ===== Sponsors ===== -->
+        <div class="sponsors">
+
+        <style>
+            .sponsors { --gap-x: 5rem; --gap-y: 3rem; }
+
+            /* 큰 페이지 제목(이미 페이지 타이틀이 따로 있으면 이 h2는 지워도 됩니다) */
+            .sponsors .heading {
+            text-align: center; margin: 0 0 2rem; font-weight: 800;
+            }
+
+            /* 섹션(등급) 제목: 왼쪽 세로 라인 */
+            .sponsors .tier { margin: 2.5rem 0 3rem; }
+            .sponsors .tier-title{
+            border-left: 6px solid #9aa7b8;   /* 필요시 색 바꾸기 */
+            padding-left: .8rem;
+            margin: 0 0 1.25rem;
+            font-weight: 700;
+            color: #374151;
+            }
+
+            /* 로고 그리드 */
+            .sponsors .logo-grid{
+            display: grid;
+            gap: var(--gap-y) var(--gap-x);
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: repeat(var(--cols, 3), minmax(0,1fr));
+            list-style: none; padding: 0; margin: 0;
+            }
+            .sponsors .logo-grid.cols-3 { --cols: 3; }
+            .sponsors .logo-grid.cols-4 { --cols: 4; }
+            .sponsors .logo-grid.cols-5 { --cols: 5; }
+
+            /* 반응형: 화면이 좁아지면 칼럼 줄이기 */
+            @media (max-width: 1024px){ .sponsors .logo-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+            @media (max-width: 800px){  .sponsors .logo-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+            @media (max-width: 520px){  .sponsors .logo-grid{ grid-template-columns: 1fr; } }
+
+            /* 로고 카드 */
+            .sponsors .logo-card{ text-align: center; }
+            .sponsors .logo-card a{ display:inline-block; }
+            .sponsors .logo-card img{
+            max-width: 260px;       /* 폭 제한 */
+            max-height: 120px;      /* 높이 제한 */
+            width: auto; height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,.06));
+            }
+            /* 로고 크기 미세 조정용 보조 클래스 */
+            .sponsors .logo-card.size-sm img{ max-height: 90px; }
+            .sponsors .logo-card.size-lg img{ max-height: 150px; }
+
+            /* 설명 텍스트 */
+            .sponsors .desc{
+            margin-top: .5rem;
+            font-size: .92rem;
+            color: #6f7e8b;
+            max-width: 28ch;        /* 길면 2~3줄 정도로 */
+            margin-left: auto; margin-right: auto;
+            }
+        </style>
+
+        <h2 class="heading">KJMD 2025: Our Sponsors</h2>
+
+        <!-- Diamond -->
+        <section class="tier" aria-labelledby="Diamond">
+            <h3 id="diamond" class="tier-title">Diamond Sponsors</h3>
+            <ul class="logo-grid cols-3">
+            <li class="logo-card">
+                <a href="#" target="_blank" rel="noopener">
+                <img src="{{ 'hanguk_yeongu_jaedan.png' | relative_url }}" alt="Google">
+                </a>
+                <p class="desc">National Research Foundation of Korea (NRF): South Korea’s leading government research-funding agency, supporting basic and applied research across all fields.</p>
+            </li>
+
+            <!-- <li class="logo-card">
+                <a href="#" target="_blank" rel="noopener">
+                <img src="{{ '/assets/images/sponsors/amazon.svg' | relative_url }}" alt="Amazon">
+                </a>
+                <p class="desc">Add a short line about support or product area.</p>
+            </li>
+
+            <li class="logo-card">
+                <a href="#" target="_blank" rel="noopener">
+                <img src="{{ '/assets/images/sponsors/microsoft.svg' | relative_url }}" alt="Microsoft">
+                </a>
+                <p class="desc">Optional one-sentence blurb.</p>
+            </li> -->
+
+            <!-- 필요시 로고 추가/삭제 -->
+            </ul>
+        </section>
+
+        </div>
+        <!-- ===== /Sponsors ===== -->
+
+
+
+
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 

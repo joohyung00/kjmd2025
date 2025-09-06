@@ -1,5 +1,5 @@
 ---
-layout: single          # or: splash (see option B below)
+layout: splash          # or: splash (see option B below)
 title: "Conference Overview"
 permalink: /conference-overview/
 author_profile: false

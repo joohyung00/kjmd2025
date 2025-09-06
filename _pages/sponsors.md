@@ -1,7 +1,7 @@
 ---
 layout: single
-title: "Sponsorship"
-permalink: /sponsorship/
+title: "Sponsors"
+permalink: /sponsors/
 author_profile: false
 ---
 

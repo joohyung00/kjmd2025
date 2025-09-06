@@ -6,7 +6,9 @@ main:
         url: /conference-overview/
       - title: "Conference Officers"
         url: /conference-officers/
-  - title: "Conference Program"
+      - title: "sponsors"
+        url: /sponsors/
+  - title: "Program"
     children:
       - title: "Program Structure"
         url: /program-structure/
@@ -14,8 +16,8 @@ main:
         url: /keynotes/
       - title: "Presentations"
         url: /presentations/
-  - title: "Sponsorship"
-    url: /sponsorship/
+  # - title: "Sponsorship"
+  #   url: /sponsorship/
   - title: "Further Information"
     children:
       - title: "Venue"

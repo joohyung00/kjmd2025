@@ -111,6 +111,14 @@ layout: default
             .accom-block tbody td:last-child { border-top-right-radius:12px; border-bottom-right-radius:12px; }
 
             .accom-block h3{ font-weight:800; margin:1.75rem 0 .5rem; color:#1f3b7b; }
+
+            /* center tables horizontally */
+            .accom-block .table-wrap { display: flex; justify-content: center; }
+            .accom-block .table-wrap > table { width: 100%; max-width: 980px; }  /* 원하는 폭으로 조절 */
+
+            /* (선택) 맵/테이블 공통 최대폭을 맞추고 싶다면 같이 지정 */
+            .accom-block .map-embed { max-width: 980px; margin: 0 auto 1.5rem; }
+
           </style>
 
           <div class="accom-container">

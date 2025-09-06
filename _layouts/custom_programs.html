@@ -130,6 +130,18 @@ layout: default
               .program-schedule tbody td{padding:.75rem .8rem;}
               .program-schedule tbody td:first-child{width:120px;}
             }
+
+            /* Center tables and cap their width */
+            .program-schedule .table-wrap { 
+              display: flex; 
+              justify-content: center; 
+            }
+
+            .program-schedule .table-wrap > table.schedule {
+              width: 100%;
+              max-width: 980px;   /* tweak this value as you like: 900–1100px works well */
+            }
+
           </style>
 
           <!-- ===== Day 1 ===== -->

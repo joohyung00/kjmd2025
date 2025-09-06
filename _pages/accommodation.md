@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: custom_accommodations
 title: "Accommodation"
 permalink: /accommodation/
 author_profile: false

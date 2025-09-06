@@ -4,25 +4,51 @@ layout: default
 
 
 <style>
-/* 이 블록은 이 페이지 안에서만 적용됩니다 */
-.officers .section-title{
-  border-left: 6px solid #2a7ae2;       /* 왼쪽 세로줄 색/두께 */
-  padding-left: .9rem;                   /* 제목과 세로줄 간격 */
-  margin: 2rem 0 1rem;
-  font-weight: 700;
-}
-.officers .officer-list{
-  list-style: none;                      /* 불릿 제거 */
-  padding: 0;
-  margin: .25rem 0 2rem;
-}
-.officers .officer-list li{ margin: .35rem 0; }
-.officers .name{ font-weight: 700; }     /* 이름은 진하게 */
-.officers .affil{
-  color: #6f7e8b;                        /* 소속은 회색 */
-  font-size: .9em;                       /* 살짝 작게 */
-  margin-left: .25rem;
-}
+    /* 이 블록은 이 페이지 안에서만 적용됩니다 */
+    .officers .section-title{
+    border-left: 6px solid #2a7ae2;       /* 왼쪽 세로줄 색/두께 */
+    padding-left: .9rem;                   /* 제목과 세로줄 간격 */
+    margin: 2rem 0 1rem;
+    font-weight: 700;
+    }
+    .officers .officer-list{
+    list-style: none;                      /* 불릿 제거 */
+    padding: 0;
+    margin: .25rem 0 2rem;
+    }
+    .officers .officer-list li{ margin: .35rem 0; }
+    .officers .name{ font-weight: 700; }     /* 이름은 진하게 */
+    .officers .affil{
+    color: #6f7e8b;                        /* 소속은 회색 */
+    font-size: .9em;                       /* 살짝 작게 */
+    margin-left: .25rem;
+    }
+
+    .officers .officer-list li{
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+    }
+    .officers .home-link{
+    margin-left: auto;            /* 오른쪽 끝으로 밀기 */
+    display: inline-grid;
+    place-items: center;
+    width: 28px; height: 28px;    /* 정사각형 버튼 */
+    border: 1.5px solid #c7d1db;  /* 아웃라인 */
+    border-radius: 6px;
+    color: #6f7e8b;               /* 아이콘 회색 */
+    text-decoration: none;
+    }
+    .officers .home-link:hover,
+    .officers .home-link:focus{
+    border-color: #2a7ae2;        /* 호버 시 포인트 색상 */
+    color: #2a7ae2;
+    outline: none;
+    }
+    .officers .home-link i{
+    font-size: .95rem;
+    line-height: 1;
+    }
 </style>
 
 
@@ -78,14 +104,33 @@ layout: default
 
             <h2 class="section-title">General Chairs</h2>
             <ul class="officer-list">
-                <li><span class="name">Wook-Shin Han</span><span class="affil">POSTECH, Korea</span></li>
-                <li><span class="name">Makoto Onizuka</span><span class="affil">Osaka University (UOsaka), Japan</span></li>
+            <li>
+                <span class="name">Wook-Shin Han</span>
+                <span class="affil">POSTECH, Korea</span>
+                <a class="home-link" href="https://wscrony.github.io/" target="_blank" rel="noopener" aria-label="Wook-Shin Han homepage">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <span class="name">Makoto Onizuka</span>
+                <span class="affil">Osaka University (UOsaka), Japan</span>
+            </li>
             </ul>
+
 
             <h2 class="section-title">General Program Chairs</h2>
             <ul class="officer-list">
-                <li><span class="name">Joohyung Yun</span><span class="affil">POSTECH, Korea</span></li>
-                <li><span class="name">Guangcan Li</span><span class="affil">Osaka University (UOsaka), Japan</span></li>
+            <li>
+                <span class="name">Joohyung Yun</span>
+                <span class="affil">POSTECH, Korea</span>
+                <a class="home-link" href="https://joohyung00.github.io/" target="_blank" rel="noopener" aria-label="Joohyung Yun homepage">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <span class="name">Guangcan Li</span>
+                <span class="affil">Osaka University (UOsaka), Japan</span>
+            </li>
             </ul>
 
             <!-- 필요하면 섹션을 계속 추가 -->

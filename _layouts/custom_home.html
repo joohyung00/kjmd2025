@@ -179,6 +179,36 @@ layout: default
   .kjmd-home .news-card time{
     color: var(--date-fg);
   }
+
+  /* News 섬네일(정사각형, 크롭 없음) */
+  .kjmd-home .news-media{
+    display: grid;
+    grid-template-columns: 64px 1fr; /* 썸네일 | 본문 */
+    gap: 12px;
+    align-items: center;
+  }
+  .kjmd-home .news-thumb{
+    width: 64px; height: 64px;
+    border-radius: 8px;
+    background: transparent; /* 비율 여백은 투명 */
+    display: grid; place-items: center;
+  }
+  .kjmd-home .news-thumb img{
+    width: 100%; height: 100%;
+    object-fit: contain;      /* 비율 유지, 크롭 X */
+    object-position: center;
+    display: block;
+  }
+  /* 날짜/헤더 살짝 정리 */
+  .kjmd-home .news-card header{ margin: 0 0 .15rem; }
+  .kjmd-home .news-card time{ font-weight: 600; font-size: .9rem; }
+
+  @media (max-width: 480px){
+    .kjmd-home .news-media{ grid-template-columns: 52px 1fr; }
+    .kjmd-home .news-thumb{ width: 52px; height: 52px; }
+  }
+
+
 </style>
 
 
@@ -311,57 +341,58 @@ layout: default
           <section class="section">
             <h2>KJMD 2025: Overview</h2>
             <p>
-              The Korea–Japan Conference on Data Management (KJMD) is a premier annual venue for
-              researchers and practitioners in data systems, databases, and data-intensive applications…
-              Replace these paragraphs with your actual overview copy.
-            </p>
-            <p>
-              KJMD 2025 will bring together academia and industry to discuss advances in data platforms,
-              large-scale analytics, AI for data management, and more. The program features keynotes,
-              paper sessions, panels, demos, and workshops.
+              KJMD is an annual venue where researchers from Korea and Japan share results
+              in data management and engage in discussions to foster collaboration.
             </p>
           </section>
+
 
           <!-- ===== News ===== -->
           <section class="section">
             <h2>News</h2>
             <ul class="news-list">
-              <!-- 각 항목은 카드 하나 -->
+
               <li class="news-card">
-                <header>
-                  <span class="badge">NEW</span>
-                  <time datetime="2025-09-05">5 Sep 2025</time>
-                </header>
-                <p>Workshop day! Don’t miss the last chance to dive deep into specialized topics.</p>
+                <div class="news-media">
+                  <!-- <div class="news-thumb">
+                    <img src="{{ '/assets/images/news/site-done.png' | relative_url }}" alt="KJMD 2025 Website Completed">
+                  </div> -->
+                  <div>
+                    <header><time datetime="2025-09-08">2025.09.08</time></header>
+                    <p>The KJMD 2025 website is complete and ready to roll!</p>
+                  </div>
+                </div>
               </li>
 
               <li class="news-card">
-                <header>
-                  <span class="badge">NEW</span>
-                  <time datetime="2025-09-04">4 Sep 2025</time>
-                </header>
-                <p>Best Demo and Best Demo Runner-up have been announced. Congratulations to all winners!</p>
+                <div class="news-media">
+                  <div class="news-thumb">
+                    <img src="{{ '/assets/images/kjmd_logo.png' | relative_url }}" alt = "KJMD 2025 Logo">
+                  </div>
+                  <div>
+                    <header><time datetime="2025-09-07">2025.09.07</time></header>
+                    <p>The KJMD 2025 logo has been created!</p>
+                  </div>
+                </div>
               </li>
 
               <li class="news-card">
-                <header>
-                  <time datetime="2025-09-03">3 Sep 2025</time>
-                </header>
-                <p>VLDB Endowment Awards have been announced. A round of applause for the awardees.</p>
+                <div class="news-media">
+                  <div class="news-thumb">
+                    <img src="{{ '/assets/images/posaka_nuki.png' | relative_url }}" alt="KJMD Logo">
+                  </div>
+                  <div>
+                    <header><time datetime="2025-09-06">2025.09.06</time></header>
+                    <p>The KJMD logo has been created!</p>
+                  </div>
+                </div>
               </li>
 
-              <li class="news-card">
-                <header>
-                  <time datetime="2025-09-01">1 Sep 2025</time>
-                </header>
-                <p>Conference opening and registration details updated. Please check the participant info page.</p>
-              </li>
             </ul>
           </section>
 
-        </div>
 
-      </div>  
+      </div>
 
         
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}

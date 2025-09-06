@@ -3,23 +3,17 @@ layout: single
 title: "Conference Officers"
 permalink: /conference-officers/
 author_profile: false
+classes: officers        # ← 이 줄이 body에 .officers 클래스를 부여
 ---
 
-# Conference Officers
+## General Chairs {: .section-hd }
 
-Meet the organizing committee and key personnel for KJMD 2025.
+- **Wook-Shin Han**, <span class="affil">POSTECH, Korea</span>
+- **Makoto Onizuka**, <span class="affil">Osaka University (UOsaka), Japan</span>
+{: .officer-list }
 
-## Organizing Committee
+## General Program Chairs {: .section-hd }
 
-### General Chair
-- [Name to be announced]
-
-### Program Chair
-- [Name to be announced]
-
-### Local Arrangements Chair
-- [Name to be announced]
-
-## Contact Information
-
-For inquiries, please contact the organizing committee.
+- **Joohyung Yun**, <span class="affil">POSTECH, Korea</span>
+- **Guangcan Li**, <span class="affil">Osaka University (UOsaka), Japan</span>
+{: .officer-list }

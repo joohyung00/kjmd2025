@@ -130,6 +130,14 @@ layout: default
   }
   .kjmd-home .news-card time { color: #607d8b; font-size: .85rem; }
   .kjmd-home .news-card p { margin: .25rem 0 0; }
+
+  .kjmd-home .hero-carousel .slide > img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center center;
+    display:block;
+  }
 </style>
 
 
@@ -183,15 +191,28 @@ layout: default
       <div class="kjmd-home">
 
         <section class="full-bleed hero-carousel" id="home-hero" aria-label="Featured venue images">
+
+            {% assign hero_dir = "/assets/images/hero" %}
+            {% assign slides = site.static_files | where_exp: "f", "f.path contains hero_dir" | sort: "name" %}
+
             <div class="slides">
-              <div class="slide" style="background-image:url('/assets/images/hero/busan.jpg')"></div>
-              <div class="slide" style="background-image:url('/assets/images/hero/busan2.jpg')"></div>
+              {% if slides and slides != empty %}
+                {% for f in slides %}
+                  <div class="slide">
+                    <img src="{{ f.path | relative_url }}" alt="slide {{ forloop.index }}" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <!-- 폴백: 이미지가 없을 때 최소 1~2장 수동 지정 -->
+                <div class="slide"><img src="{{ '/assets/images/hero/busan.jpg'  | relative_url }}" alt="slide 1" loading="eager"></div>
+                <div class="slide"><img src="{{ '/assets/images/hero/busan2.jpg' | relative_url }}" alt="slide 2" loading="lazy"></div>
+              {% endif %}
             </div>
 
             <div class="hero-caption">
               <div>
-                <h1 class="title">KJMD 2025</h1>
-                <p class="subtitle">Seoul, Republic of Korea · August 2025</p>
+                <h1 class="title">7th Joint Korea-Japan Workshop on Management of Data</h1>
+                <p class="subtitle">Busan, Republic of Korea · October 24-25, 2025</p>
               </div>
             </div>
 

@@ -208,6 +208,13 @@ layout: default
     .kjmd-home .news-thumb{ width: 52px; height: 52px; }
   }
 
+  /* No thumbnail → use a single column */
+  .kjmd-home .news-media.no-thumb { grid-template-columns: 1fr; }
+
+  @media (max-width: 480px){
+    .kjmd-home .news-media.no-thumb { grid-template-columns: 1fr; }
+  }
+
 
 </style>
 
@@ -353,10 +360,7 @@ layout: default
             <ul class="news-list">
 
               <li class="news-card">
-                <div class="news-media">
-                  <!-- <div class="news-thumb">
-                    <img src="{{ '/assets/images/news/site-done.png' | relative_url }}" alt="KJMD 2025 Website Completed">
-                  </div> -->
+                <div class="news-media no-thumb">
                   <div>
                     <header><time datetime="2025-09-08">2025.09.08</time></header>
                     <p>The KJMD 2025 website is complete and ready to roll!</p>

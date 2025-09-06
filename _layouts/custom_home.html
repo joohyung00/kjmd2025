@@ -2,6 +2,137 @@
 layout: default
 ---
 
+<style>
+  /* ====== Full-bleed hero carousel ====== */
+  .kjmd-home .full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);   /* 컨텐츠 폭을 넘어 뷰포트 끝까지 확장 */
+  }
+  .kjmd-home .hero-carousel {
+    position: relative;
+    height: 75vh;                    /* 첫 화면을 크게 채움 (원하면 60~85vh로 조절) */
+    min-height: 420px;
+    overflow: hidden;
+    background: #000;
+    isolation: isolate;              /* overlay blending 안정화 */
+  }
+  .kjmd-home .hero-carousel .slides {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    transform: translateX(var(--x, 0%));
+    transition: transform .6s ease;
+  }
+  .kjmd-home .hero-carousel .slide {
+    position: relative;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+  /* 어둡게 오버레이 */
+  .kjmd-home .hero-carousel .slide::after{
+    content:"";
+    position:absolute; inset:0;
+    background: rgba(0,0,0,.35);
+    mix-blend-mode: multiply;
+  }
+  /* 중앙 타이틀 */
+  .kjmd-home .hero-caption {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    text-align: center; color: #fff;
+    padding: 1rem;
+    pointer-events: none;            /* 버튼 클릭 방해 안함 */
+  }
+  .kjmd-home .hero-caption .title {
+    font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: .3px;
+    text-shadow: 0 2px 14px rgba(0,0,0,.45);
+    margin: 0 0 .5rem;
+  }
+  .kjmd-home .hero-caption .subtitle {
+    font-size: clamp(1rem, 1vw + .8rem, 1.25rem);
+    opacity: .95;
+    margin: 0;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+
+  /* 좌우 네비게이션 */
+  .kjmd-home .hero-nav {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 .5rem;
+    pointer-events: none;
+  }
+  .kjmd-home .hero-btn {
+    pointer-events: auto;
+    width: 42px; height: 42px; border-radius: 999px;
+    display: grid; place-items: center;
+    border: 1.5px solid rgba(255,255,255,.65);
+    background: rgba(0,0,0,.25);
+    color: #fff; cursor: pointer;
+    transition: .2s;
+  }
+  .kjmd-home .hero-btn:hover { background: rgba(0,0,0,.45); }
+
+  /* 점(인디케이터) */
+  .kjmd-home .dots {
+    position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
+    display: flex; gap: 8px;
+  }
+  .kjmd-home .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,.5);
+    border: 1px solid rgba(0,0,0,.2);
+    cursor: pointer;
+  }
+  .kjmd-home .dot[aria-current="true"] { background: #fff; }
+
+  /* ====== Content sections ====== */
+  .kjmd-home .section {
+    margin: 2.5rem 0 3.25rem;
+  }
+  .kjmd-home .section h2 {
+    margin-bottom: .85rem;
+    color: var(--mm-primary, #2a7ae2);
+    font-weight: 800;
+  }
+
+  /* News cards */
+  .kjmd-home .news-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .8rem;
+    padding: 0; list-style: none; margin: 0;
+  }
+  @media (min-width: 720px){
+    .kjmd-home .news-list { grid-template-columns: 1fr 1fr; }
+  }
+  .kjmd-home .news-card {
+    border: 1px solid #e5e8ec;
+    border-radius: 10px;
+    padding: .9rem 1rem;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.03);
+  }
+  .kjmd-home .news-card header{
+    display: flex; align-items: center; gap: .5rem; margin-bottom: .35rem;
+  }
+  .kjmd-home .badge {
+    font-size: .72rem; font-weight: 700;
+    background: #ffe9ef; color: #d23c63;
+    border: 1px solid #ffc9d7; border-radius: 6px;
+    padding: .15rem .45rem;
+  }
+  .kjmd-home .news-card time { color: #607d8b; font-size: .85rem; }
+  .kjmd-home .news-card p { margin: .25rem 0 0; }
+</style>
+
+
 {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
   {% include page__hero.html %}
 {% elsif page.header.video.id and page.header.video.provider %}
@@ -48,7 +179,130 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-        {{ content }}
+
+
+        <section class="full-bleed hero-carousel" id="home-hero" aria-label="Featured venue images">
+            <div class="slides">
+              <!-- 이미지 경로를 실제 파일로 바꾸세요 -->
+              <div class="slide" style="background-image:url('/assets/images/hero/busan.jpg')"></div>
+              <div class="slide" style="background-image:url('/assets/images/hero/busan2.jpg')"></div>
+              <!-- <div class="slide" style="background-image:url('/assets/images/hero/slide3.jpg')"></div> -->
+            </div>
+
+            <div class="hero-caption">
+              <div>
+                <h1 class="title">KJMD 2025</h1>
+                <p class="subtitle">Seoul, Republic of Korea · August 2025</p>
+              </div>
+            </div>
+
+            <div class="hero-nav">
+              <button class="hero-btn prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+              <button class="hero-btn next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="dots" aria-hidden="true"></div>
+          </section>
+
+          <script>
+            // 간단한 캐러셀 (바닐라 JS)
+            (function(){
+              const el = document.querySelector('#home-hero');
+              if(!el) return;
+              const slides = Array.from(el.querySelectorAll('.slide'));
+              const dotsWrap = el.querySelector('.dots');
+              let i = 0, n = slides.length, timer;
+
+              function go(k){
+                i = (k + n) % n;
+                el.style.setProperty('--x', (-100 * i) + '%');
+                dotsWrap.querySelectorAll('.dot').forEach((d, j)=>d.setAttribute('aria-current', j===i));
+              }
+              function next(){ go(i+1); }
+              function prev(){ go(i-1); }
+              function auto(){
+                clearInterval(timer);
+                timer = setInterval(next, 6000);
+              }
+
+              // dots 생성
+              dotsWrap.innerHTML = slides.map((_, j)=>`<button class="dot" aria-label="Go to slide ${j+1}"></button>`).join('');
+              dotsWrap.addEventListener('click', e=>{
+                const b = e.target.closest('.dot');
+                if(!b) return;
+                go([...dotsWrap.children].indexOf(b)); auto();
+              });
+
+              el.querySelector('.next').addEventListener('click', ()=>{ next(); auto(); });
+              el.querySelector('.prev').addEventListener('click', ()=>{ prev(); auto(); });
+
+              // 터치 스와이프
+              let sx=0, dx=0;
+              el.addEventListener('pointerdown', e=>{ sx=e.clientX; dx=0; el.setPointerCapture(e.pointerId); });
+              el.addEventListener('pointermove', e=>{ if(!sx) return; dx=e.clientX-sx; });
+              el.addEventListener('pointerup', ()=>{ if(Math.abs(dx)>40) (dx<0?next:prev)(); sx=0; auto(); });
+
+              go(0); auto();
+            })();
+          </script>
+
+          <!-- ===== Overview ===== -->
+          <section class="section">
+            <h2>KJMD 2025: Overview</h2>
+            <p>
+              The Korea–Japan Conference on Data Management (KJMD) is a premier annual venue for
+              researchers and practitioners in data systems, databases, and data-intensive applications…
+              Replace these paragraphs with your actual overview copy.
+            </p>
+            <p>
+              KJMD 2025 will bring together academia and industry to discuss advances in data platforms,
+              large-scale analytics, AI for data management, and more. The program features keynotes,
+              paper sessions, panels, demos, and workshops.
+            </p>
+          </section>
+
+          <!-- ===== News ===== -->
+          <section class="section">
+            <h2>News</h2>
+            <ul class="news-list">
+              <!-- 각 항목은 카드 하나 -->
+              <li class="news-card">
+                <header>
+                  <span class="badge">NEW</span>
+                  <time datetime="2025-09-05">5 Sep 2025</time>
+                </header>
+                <p>Workshop day! Don’t miss the last chance to dive deep into specialized topics.</p>
+              </li>
+
+              <li class="news-card">
+                <header>
+                  <span class="badge">NEW</span>
+                  <time datetime="2025-09-04">4 Sep 2025</time>
+                </header>
+                <p>Best Demo and Best Demo Runner-up have been announced. Congratulations to all winners!</p>
+              </li>
+
+              <li class="news-card">
+                <header>
+                  <time datetime="2025-09-03">3 Sep 2025</time>
+                </header>
+                <p>VLDB Endowment Awards have been announced. A round of applause for the awardees.</p>
+              </li>
+
+              <li class="news-card">
+                <header>
+                  <time datetime="2025-09-01">1 Sep 2025</time>
+                </header>
+                <p>Conference opening and registration details updated. Please check the participant info page.</p>
+              </li>
+            </ul>
+          </section>
+
+        </div>
+
+
+
+        
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 

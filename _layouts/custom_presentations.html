@@ -48,7 +48,167 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-        {{ content }}
+        
+        <!-- ===== Presentations (Oral & Poster) ===== -->
+        <div class="presentations">
+
+          <style>
+            /* Pastel-blue card UI (scoped) */
+            .presentations{
+              --brand:#2a7ae2;
+              --card-bg:#eef5ff;
+              --card-br:#cfe1ff;
+              --card-shadow:rgba(42,122,226,.09);
+              --chip-bg:#e7f0ff;
+              --chip-br:#c6d8ff;
+              --chip-fg:#1f3b7b;
+              --muted:#5976a8;
+              --title:#123665;
+            }
+            .presentations h2{
+              font-weight:800; margin:2rem 0 1rem;
+              color:#1c3a73;
+              display:flex; align-items:center; gap:.6rem;
+            }
+            .presentations .wrap{ max-width:980px; margin:0 auto; }
+
+            /* card */
+            .talk-card{
+              background:var(--card-bg);
+              border:1px solid var(--card-br);
+              border-radius:16px;
+              box-shadow:0 8px 22px var(--card-shadow);
+              padding:14px 16px;
+              margin:12px 0;
+              transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+            }
+            .talk-card:hover{ border-color:#b9d1ff; box-shadow:0 12px 28px rgba(42,122,226,.14); transform:translateY(-1px); }
+
+            .talk-top{
+              display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:.35rem;
+            }
+            .chip{
+              display:inline-block; font-weight:800; font-size:.78rem;
+              background:var(--chip-bg); color:var(--chip-fg);
+              border:1px solid var(--chip-br); border-radius:999px;
+              padding:.2rem .55rem;
+            }
+            .chip.type-oral{ background:#dbe7ff; }
+            .chip.type-poster{ background:#eaf3ff; }
+            .chip.affil{ background:#f0f6ff; font-weight:700; }
+
+            .talk-title{ margin:.2rem 0 .25rem; color:var(--title); line-height:1.35; font-weight:800; }
+            .talk-meta{ color:var(--muted); font-size:.95rem; }
+            .talk-meta strong{ color:#1c2f55; }
+
+            @media (max-width:560px){
+              .talk-card{ padding:12px 14px; }
+              .talk-title{ font-size:1rem; }
+            }
+          </style>
+
+          <div class="wrap">
+
+            <!-- ORAL -->
+            <h2>Oral Presentations</h2>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-oral">Oral</span>
+                <span class="chip affil">POSTECH</span>
+              </div>
+              <h3 class="talk-title">Graph Systems for Real-World AI Workloads</h3>
+              <div class="talk-meta">Presenter: <strong>Wook-Shin Han</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-oral">Oral</span>
+                <span class="chip affil">Osaka University</span>
+              </div>
+              <h3 class="talk-title">Learning-Based Query Processing in Practice</h3>
+              <div class="talk-meta">Presenter: <strong>Makoto Onizuka</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-oral">Oral</span>
+                <span class="chip affil">Nanyang Technological University</span>
+              </div>
+              <h3 class="talk-title">Human-Centric Tools for Data-Driven Systems</h3>
+              <div class="talk-meta">Presenter: <strong>Sourav Bhowmick</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-oral">Oral</span>
+                <span class="chip affil">Seoul National University</span>
+              </div>
+              <h3 class="talk-title">Approximate Indexes for Fast Analytics</h3>
+              <div class="talk-meta">Presenter: <strong>J. Kim</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-oral">Oral</span>
+                <span class="chip affil">University of Tokyo</span>
+              </div>
+              <h3 class="talk-title">Reliable RAG Pipelines over Heterogeneous Tables</h3>
+              <div class="talk-meta">Presenter: <strong>M. Sato</strong></div>
+            </article>
+
+            <!-- POSTER -->
+            <h2>Poster Presentations</h2>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-poster">Poster</span>
+                <span class="chip affil">POSTECH</span>
+              </div>
+              <h3 class="talk-title">Efficient Schema Discovery for Semi-Structured Data</h3>
+              <div class="talk-meta">Presenter: <strong>Joohyung Yun</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-poster">Poster</span>
+                <span class="chip affil">KAIST</span>
+              </div>
+              <h3 class="talk-title">Temporal Graph Generation with Motif Transitions</h3>
+              <div class="talk-meta">Presenter: <strong>R. Lee</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-poster">Poster</span>
+                <span class="chip affil">Osaka University</span>
+              </div>
+              <h3 class="talk-title">Vector Databases for Domain-Specific Retrieval</h3>
+              <div class="talk-meta">Presenter: <strong>T. Nakamura</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-poster">Poster</span>
+                <span class="chip affil">Yonsei University</span>
+              </div>
+              <h3 class="talk-title">Robust Cardinality Estimation via Mixture Models</h3>
+              <div class="talk-meta">Presenter: <strong>H. Park</strong></div>
+            </article>
+
+            <article class="talk-card">
+              <div class="talk-top">
+                <span class="chip type-poster">Poster</span>
+                <span class="chip affil">Kyoto University</span>
+              </div>
+              <h3 class="talk-title">Streaming Joins on Compressed Time-Series</h3>
+              <div class="talk-meta">Presenter: <strong>Y. Tanaka</strong></div>
+            </article>
+
+          </div>
+        </div>
+        <!-- ===== /Presentations ===== -->
+
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 

@@ -101,10 +101,15 @@ layout: default
             .accom-block h2{ font-weight:800; text-align:center; color:var(--mm-primary,#2a7ae2);
                             font-size:clamp(1.75rem,1.2rem + 2vw,2.5rem); margin:0 0 .75rem; }
             .accom-block h3{ font-weight:800; margin:1.75rem 0 .5rem; color:#1f3b7b; }
+
+            /* Make tables fill the container width consistently */
+            .accom-block table{ table-layout: fixed; width: 100%; }
+            /* Prevent long names/lists from blowing up layout */
+            .accom-block th, .accom-block td{ word-break: break-word; }
           </style>
 
           <!-- 큰 제목 -->
-          <h2>Accommodation: Central Hotel Haeundae</h2>
+          <h2>Central Hotel Haeundae</h2>
 
           <!-- 1) 대표 이미지 -->
           <figure>
@@ -133,7 +138,13 @@ layout: default
           <!-- 4) 방 배정 표 -->
           <h3>Room Assignment</h3>
           <div class="table-wrap">
-            <table>
+            <table class="room-table">
+              <colgroup>
+                <col style="width:16%">
+                <col style="width:28%">
+                <col style="width:28%">
+                <col style="width:28%">
+              </colgroup>
               <thead>
                 <tr>
                   <th>Room ID</th>
@@ -153,10 +164,16 @@ layout: default
             </table>
           </div>
 
+
           <!-- 5) 차량 배정 표 -->
           <h3>Car Assignment</h3>
           <div class="table-wrap">
-            <table>
+            <table class="car-table">
+              <colgroup>
+                <col style="width:16%">
+                <col style="width:18%">
+                <col style="width:66%">
+              </colgroup>
               <thead>
                 <tr>
                   <th>Car ID</th>

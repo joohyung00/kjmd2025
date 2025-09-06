@@ -6,7 +6,7 @@ main:
       #   url: /conference-overview/
       - title: "Conference Officers"
         url: /conference-officers/
-      - title: "sponsors"
+      - title: "Sponsors"
         url: /sponsors/
   - title: "Program"
     children:

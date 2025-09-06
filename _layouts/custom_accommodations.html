@@ -48,7 +48,136 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-        {{ content }}
+        
+        <!-- ===== Accommodation: Central Hotel Haeundae ===== -->
+        <section class="accom-block" aria-label="Accommodation">
+
+          <style>
+            /* 파스텔 블루 테이블 스타일 (이 섹션에만 적용) */
+            .accom-block{
+              --hdr:#dbe7ff;        /* 헤더 배경 (프로그램 표와 톤 맞춤) */
+              --hdr-fg:#163a76;     /* 헤더 글자색 */
+              --row:#eef5ff;        /* 본문 행 배경 */
+              --br:#cfe1ff;         /* 테두리 */
+              --shadow:rgba(42,122,226,.10);
+            }
+            .accom-block .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; margin: 1rem 0 2rem; }
+            .accom-block table{
+              width:100%;
+              border-collapse:separate;
+              border-spacing:0 10px;      /* 라운드 카드 느낌 */
+            }
+            .accom-block thead th{
+              background:var(--hdr);
+              color:var(--hdr-fg);
+              font-weight:800;
+              text-align:left;
+              padding:.7rem .9rem;
+              border:1px solid var(--br);
+            }
+            .accom-block thead th:first-child{ border-top-left-radius:12px; border-bottom-left-radius:12px; }
+            .accom-block thead th:last-child { border-top-right-radius:12px; border-bottom-right-radius:12px; }
+
+            .accom-block tbody td{
+              background:var(--row);
+              border:1px solid var(--br);
+              padding:.75rem .9rem;
+              vertical-align:top;
+              transition:box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+            }
+            .accom-block tbody tr:hover td{
+              box-shadow:0 4px 16px var(--shadow);
+              border-color:#b9d1ff;
+              transform:translateY(-1px);
+            }
+            .accom-block tbody td:first-child{ border-top-left-radius:12px; border-bottom-left-radius:12px; white-space:nowrap; }
+            .accom-block tbody td:last-child { border-top-right-radius:12px; border-bottom-right-radius:12px; }
+
+            /* 이미지 반폭 + 가운데 정렬 (venue와 동일) */
+            .accom-block figure{ margin:0 auto 1rem; width:50%; }
+            .accom-block figure img{ width:100%; height:auto; border-radius:12px; display:block; }
+            @media (max-width:640px){ .accom-block figure{ width:100%; } }
+
+            .accom-block h2{ font-weight:800; text-align:center; color:var(--mm-primary,#2a7ae2);
+                            font-size:clamp(1.75rem,1.2rem + 2vw,2.5rem); margin:0 0 .75rem; }
+            .accom-block h3{ font-weight:800; margin:1.75rem 0 .5rem; color:#1f3b7b; }
+          </style>
+
+          <!-- 큰 제목 -->
+          <h2>Accommodation: Central Hotel Haeundae</h2>
+
+          <!-- 1) 대표 이미지 -->
+          <figure>
+            <img src="{{ '/assets/images/busancentral.jpg' | relative_url }}" alt="Haeundae Central Hotel">
+          </figure>
+
+          <!-- 2) 간단 정보 -->
+          <ul>
+            <li><strong>Address:</strong> 1122 Jungang-daero, Yeonje-gu, Busan 47520, South Korea</li>
+            <li><strong>Tel:</strong> +82-51-760-9000</li>
+            <li><strong>Website:</strong> <a href="http://www.centralhotel.kr/" target="_blank" rel="noopener">http://www.centralhotel.kr/</a></li>
+            <li><strong>Getting there:</strong> ~100 m from <em>Haeundae Station</em></li>
+            <li><strong>Check-in / Check-out:</strong> 15:00 / 11:00</li>
+          </ul>
+
+          <!-- 3) Google Maps -->
+          <div style="position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;">
+            <iframe
+              title="Map: Haeundae Central Hotel"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.831549617976!2d129.1669313!3d35.1608216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35688dbbe559c5af%3A0x332119e9ef3d6bf4!2z7ZW07Jq064yA7IS87Yq465-07Zi47YWU!5e0!3m2!1sko!2skr!4v1757174041806!5m2!1sko!2skr"
+              style="position:absolute;inset:0;border:0;width:100%;height:100%;"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- 4) 방 배정 표 -->
+          <h3>Room Assignment</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Room ID</th>
+                  <th>Person 1</th>
+                  <th>Person 2</th>
+                  <th>Person 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>R-101</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                  <td>TBD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 5) 차량 배정 표 -->
+          <h3>Car Assignment</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Car ID</th>
+                  <th>Driver</th>
+                  <th>Passengers (list)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>C-01</td>
+                  <td>TBD</td>
+                  <td>TBD, TBD, TBD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </section>
+
+
+
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 

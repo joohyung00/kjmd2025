@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: custom_conference_officers
 title: "Conference Officers"
 permalink: /conference-officers/
 author_profile: false

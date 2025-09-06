@@ -84,11 +84,11 @@ layout: default
             details.kn-card > summary{
             list-style: none;
             cursor: pointer;
-            padding: 16px;
             display: grid;
-            grid-template-columns: 120px 1fr 24px; /* photo | content | toggle */
-            gap: 16px;
             align-items: center;
+            padding: 12px 14px;            /* 헤더 상하 여백 살짝 축소 */
+            gap: 12px;
+            grid-template-columns: 110px 1fr 22px; /* 썸네일/본문/토글 살짝 축소 */
             }
             details.kn-card > summary::-webkit-details-marker{ display:none; }
 
@@ -106,23 +106,35 @@ layout: default
             }
 
             /* Content in header */
-            .kn-topline{
-            display:flex; align-items:center; gap:.5rem; margin-bottom:.35rem;
-            flex-wrap:wrap;
+            .keynotes .kn-topline .chip{
+            font-size: .72rem;              /* Keynote 1 배지 */
+            padding: .18rem .5rem;
             }
             .chip{
             display:inline-block; font-weight:800; font-size:.8rem;
             background: var(--hdr); color:#1f3b7b;
             border:1px solid var(--br); padding:.2rem .55rem; border-radius:999px;
             }
-            .chair{ color: var(--muted); font-size:.9rem; }
-
-            .kn-title{ margin:.15rem 0; line-height:1.35; font-weight:800; }
-            .kn-authors{ color:#1f2a44; font-weight:600; }
-            .kn-affil{ color:var(--muted); }
+            .keynotes .chair{                  /* Session Chair */
+            font-size: .85rem;
+            }
+            .keynotes .kn-title{
+            /* h3가 너무 커서 직접 지정: 데스크탑 기준 1.15rem 정도 */
+            font-size: clamp(1rem, 0.9rem + 0.6vw, 1.15rem);
+            line-height: 1.3;
+            }
+            .keynotes .kn-authors{             /* 이름 라인 */
+            font-size: .95rem;
+            font-weight: 600;
+            }
+            .keynotes .kn-affil{               /* 소속 */
+            font-size: .9rem;
+            }
 
             /* Toggle chevron */
-            .kn-toggle{ font-size:20px; color:#1f3b7b; opacity:.7; transition:transform .2s ease; }
+            .keynotes .kn-toggle{              /* 오른쪽 ▾ 아이콘 */
+            font-size: 16px;
+            }
             details.kn-card[open] .kn-toggle{ transform: rotate(180deg); }
 
             /* Body */
@@ -141,16 +153,22 @@ layout: default
             overflow:hidden;
             }
             details.kn-sub > summary{
-            cursor:pointer; list-style:none; padding:.6rem .8rem;
+            cursor:pointer; list-style:none;
             background: var(--hdr);
             display:flex; align-items:center; justify-content:space-between;
             font-weight:800; color:#1f3b7b;
+            font-size: .95rem;
+            padding: .5rem .7rem;
             }
             details.kn-sub > summary::-webkit-details-marker{ display:none; }
             details.kn-sub[open] > summary{ border-bottom:1px solid var(--br); }
             .sub-arrow{ font-size:16px; opacity:.75; transition:transform .2s ease; }
             details.kn-sub[open] .sub-arrow{ transform:rotate(180deg); }
-            .kn-sub-body{ padding:.85rem .95rem; color:#223249; line-height:1.65; }
+            .kn-sub-body{ 
+                padding:.85rem .95rem; color:#223249;
+                font-size: .95rem;
+                line-height: 1.6;
+            }
 
             /* Mobile */
             @media (max-width: 576px){
@@ -163,15 +181,15 @@ layout: default
         <details class="kn-card">
             <summary>
             <div class="kn-thumb">
-                <img src="{{ '/assets/images/keynotes/kn1.jpg' | relative_url }}" alt="Stratos Idreos">
+                <img src="{{ '/assets/images/keynotes/dr_bhowmick.jpg' | relative_url }}" alt="Stratos Idreos">
             </div>
             <div>
                 <div class="kn-topline">
                 <span class="chip">Keynote 1</span>
-                <span class="chair">Session Chair: Themis Palpanas (Université Paris Cité)</span>
+                <span class="chair">Session Chair: Joohyung Yun (POSTECH)</span>
                 </div>
-                <h3 class="kn-title">Alphabets, Grammars, Calculators, and the End of Hand-Crafted Systems</h3>
-                <div class="kn-authors">Stratos Idreos <span class="kn-affil">(Harvard University)</span></div>
+                <h3 class="kn-title">What Can Cognitive Psychology Do For Data Management?</h3>
+                <div class="kn-authors"> Sourav S. Bhowmick <span class="kn-affil">(Nanyang Technological University)</span></div>
             </div>
             <div class="kn-toggle" aria-hidden="true">▾</div>
             </summary>
@@ -180,19 +198,14 @@ layout: default
             <details class="kn-sub">
                 <summary>Abstract <span class="sub-arrow" aria-hidden="true">▾</span></summary>
                 <div class="kn-sub-body">
-                Data-centric computation is evolving rapidly as new data types, hardware and workloads appear.
-                This talk sketches a path from hand-crafted systems to automated “system calculators” that
-                compose storage formats, operators and architectures on demand to match each workload.
+                Placeholder
                 </div>
             </details>
 
             <details class="kn-sub">
                 <summary>Bio <span class="sub-arrow" aria-hidden="true">▾</span></summary>
                 <div class="kn-sub-body">
-                Stratos Idreos is Professor of Computer Science at Harvard University.
-                He directs the Harvard Data Systems Laboratory and works on data-centric system design
-                that adapts to hardware and workloads. His work has been recognized with awards including
-                early-career honors and contributions awards in the data systems community.
+                Placeholder
                 </div>
             </details>
             </div>
@@ -202,15 +215,15 @@ layout: default
         <details class="kn-card">
             <summary>
             <div class="kn-thumb">
-                <img src="{{ '/assets/images/keynotes/kn2.jpg' | relative_url }}" alt="Jane Doe">
+                <img src="{{ '/assets/images/dr_onizuka.jpg' | relative_url }}" alt="Jane Doe">
             </div>
             <div>
                 <div class="kn-topline">
                 <span class="chip">Keynote 2</span>
-                <span class="chair">Session Chair: J. Kim (KAIST)</span>
+                <span class="chair">Session Chair: Joohyung Yun (POSTECH)</span>
                 </div>
-                <h3 class="kn-title">Systems for AI: From Data to Models and Back</h3>
-                <div class="kn-authors">Jane Doe <span class="kn-affil">(Stanford University)</span></div>
+                <h3 class="kn-title"> Title Placeholder </h3>
+                <div class="kn-authors"> Makoto Onizuka <span class="kn-affil">(Osaka University)</span></div>
             </div>
             <div class="kn-toggle" aria-hidden="true">▾</div>
             </summary>
@@ -219,17 +232,14 @@ layout: default
             <details class="kn-sub">
                 <summary>Abstract <span class="sub-arrow" aria-hidden="true">▾</span></summary>
                 <div class="kn-sub-body">
-                We explore data management and systems co-design for modern AI pipelines: collecting,
-                cleaning, and serving data; training and serving large models; and closing the loop
-                with telemetry-driven improvements.
+                Placeholder
                 </div>
             </details>
 
             <details class="kn-sub">
                 <summary>Bio <span class="sub-arrow" aria-hidden="true">▾</span></summary>
                 <div class="kn-sub-body">
-                Jane Doe is a professor whose research spans data systems and machine learning,
-                focusing on scalable, reliable platforms for AI applications in industry and science.
+                Placeholder
                 </div>
             </details>
             </div>

@@ -53,215 +53,178 @@ layout: default
         <!-- ===== Program (Oct. 24–25) ===== -->
         <div class="program-schedule">
 
-        <style>
-            /* Pastel blue palette (scope to this page only) */
+          <style>
+            /* Pastel blue palette (scoped) */
             .program-schedule{
-            --brand: #2a7ae2;
-            --bg: #eef5ff;          /* row background */
-            --border: #cfe1ff;      /* row border */
-            --header: #e7f0ff;      /* header background */
-            --muted: #5976a8;       /* time text */
-            --shadow: rgba(42,122,226,.08);
-            --badge-bg: #e7f0ff;
-            --badge-fg: #2a63c2;
-            --badge-br: #c6d8ff;
+              --brand:#2a7ae2;
+              --bg:#eef5ff;          /* 기본 행 */
+              --row-strong:#e3ecff;  /* Talk/Keynote 강조 행 */
+              --border:#cfe1ff;
+              --header:#dbe7ff;      /* 헤더를 조금 더 진하게 */
+              --header-br:#b8d0ff;
+              --header-fg:#163a76;   /* 헤더 텍스트 */
+              --muted:#5976a8;       /* 시간/보조 텍스트 */
+              --shadow:rgba(42,122,226,.08);
+              --badge-bg:#e7f0ff;
+              --badge-fg:#2a63c2;
+              --badge-br:#c6d8ff;
             }
 
             .program-schedule h2.day-title{
-            font-weight: 800;
-            margin: 2.25rem 0 1rem;
-            display: inline-flex; align-items: center; gap:.6rem;
+              font-weight:800; margin:2.25rem 0 1rem;
+              display:inline-flex; align-items:center; gap:.6rem;
             }
             .program-schedule .day-chip{
-            background: var(--header);
-            color: var(--badge-fg);
-            border: 1px solid var(--badge-br);
-            border-radius: 999px;
-            padding: .25rem .6rem;
-            font-size: .9rem;
-            font-weight: 700;
+              background:var(--header); color:var(--header-fg);
+              border:1px solid var(--header-br);
+              border-radius:999px; padding:.25rem .6rem; font-size:.9rem; font-weight:700;
             }
 
-            .program-schedule .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom: 2rem; }
-            .program-schedule table.schedule{
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;            /* row gaps -> rounded “cards” 느낌 */
-            }
+            .program-schedule .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:2rem;}
+            .program-schedule table.schedule{width:100%;border-collapse:separate;border-spacing:0 10px;}
+
+            /* header (darker) */
             .program-schedule thead th{
-            background: var(--header);
-            color: #1f3b7b;
-            text-align: left;
-            padding: .7rem .9rem;
-            font-weight: 800;
-            border: 1px solid var(--border);
+              background:var(--header); color:var(--header-fg);
+              text-align:left; padding:.7rem .9rem; font-weight:800;
+              border:1px solid var(--header-br);
             }
-            .program-schedule thead th:first-child{ border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
-            .program-schedule thead th:last-child { border-top-right-radius:12px; border-bottom-right-radius:12px; }
+            .program-schedule thead th:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px;}
+            .program-schedule thead th:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px;}
 
+            /* rows */
             .program-schedule tbody td{
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: .8rem .95rem;
-            vertical-align: top;
-            transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+              background:var(--bg); border:1px solid var(--border);
+              padding:.8rem .95rem; vertical-align:top;
+              transition:box-shadow .15s ease,border-color .15s ease,transform .15s ease;
             }
             .program-schedule tbody tr:hover td{
-            box-shadow: 0 4px 16px var(--shadow);
-            border-color:#b9d1ff;
-            transform: translateY(-1px);
+              box-shadow:0 4px 16px var(--shadow); border-color:#b9d1ff; transform:translateY(-1px);
             }
-
             .program-schedule tbody td:first-child{
-            border-top-left-radius: 12px; border-bottom-left-radius: 12px;
-            white-space: nowrap; width: 160px; color: var(--muted); font-weight: 700;
+              border-top-left-radius:12px;border-bottom-left-radius:12px;
+              white-space:nowrap;width:160px;color:var(--muted);font-weight:700;
             }
-            .program-schedule tbody td:last-child{
-            border-top-right-radius: 12px; border-bottom-right-radius: 12px;
+            .program-schedule tbody td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px;}
+
+            /* Talk / Keynote 강조 행 */
+            .program-schedule tr.type-talk td,
+            .program-schedule tr.type-keynote td{
+              background:var(--row-strong);
+              border-color:#bcd3ff;
             }
 
+            /* labels */
             .program-schedule .tag{
-            display:inline-block; font-size:.78rem; font-weight:700;
-            background: var(--badge-bg); color: var(--badge-fg);
-            border:1px solid var(--badge-br); border-radius:6px;
-            padding:.12rem .4rem; margin-right:.4rem;
+              display:inline-block;font-size:.78rem;font-weight:700;
+              background:var(--badge-bg);color:var(--badge-fg);
+              border:1px solid var(--badge-br);border-radius:6px;
+              padding:.12rem .4rem;margin-right:.4rem;
             }
 
-            .program-schedule .mini{ margin:.4rem 0 0 1rem; }
-            .program-schedule .mini li{ margin:.15rem 0; }
+            .program-schedule .mini{margin:.4rem 0 0 1rem;}
+            .program-schedule .mini li{margin:.15rem 0;}
 
-            /* Mobile tweaks */
-            @media (max-width: 600px){
-            .program-schedule tbody td{ padding: .75rem .8rem; }
-            .program-schedule tbody td:first-child{ width: 120px; }
+            /* Mobile */
+            @media (max-width:600px){
+              .program-schedule tbody td{padding:.75rem .8rem;}
+              .program-schedule tbody td:first-child{width:120px;}
             }
-        </style>
+          </style>
 
-        <!-- ===== Day 1 ===== -->
-        <h2 class="day-title">Program <span class="day-chip">Oct. 24 (Fri)</span></h2>
-        <div class="table-wrap">
+          <!-- ===== Day 1 ===== -->
+          <h2 class="day-title">Program <span class="day-chip">Oct. 24 (Fri)</span></h2>
+          <div class="table-wrap">
             <table class="schedule">
-            <thead>
+              <thead>
                 <tr><th>Time</th><th>Speaker</th><th>Info</th></tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
                 <tr>
-                <td>08:30 – 08:45</td>
-                <td>Organizing Team</td>
-                <td><span class="tag">Opening</span> Welcome remarks & logistics</td>
+                  <td>15:00 – 15:30</td>
+                  <td>—</td>
+                  <td><span class="tag">Registration</span> On-site registration</td>
                 </tr>
-                <tr>
-                <td>08:45 – 09:10</td>
-                <td>Masahiro Mitani</td>
-                <td>Enhancing Factual and Counterfactual Explanations for Link Prediction with Quantum-Inspired Evolutionary Algorithms</td>
+                <tr class="type-talk">
+                  <td>15:30 – 16:00</td>
+                  <td>Wook-Shin Han</td>
+                  <td><span class="tag">Opening</span> Welcome & overview</td>
                 </tr>
-                <tr>
-                <td>09:10 – 09:35</td>
-                <td>Sangoh Lee</td>
-                <td>ASM in Action: Fast and Practical Learned Cardinality Estimation</td>
+                <tr class="type-keynote">
+                  <td>16:00 – 17:00</td>
+                  <td>Sourav Bhowmick</td>
+                  <td><span class="tag">Keynote 1</span> (Placeholder)</td>
                 </tr>
-                <tr>
-                <td>09:35 – 10:00</td>
-                <td>Ryoga Yoshida</td>
-                <td>Workload Cost Optimization Using Dynamic Replication in Decentralized Systems</td>
+                <tr class="type-keynote">
+                  <td>17:00 – 18:00</td>
+                  <td>Makoto Onizuka</td>
+                  <td><span class="tag">Keynote 2</span> (Placeholder)</td>
                 </tr>
-                <tr>
-                <td>10:00 – 10:15</td>
-                <td>—</td>
-                <td><span class="tag">Break</span> Coffee & networking</td>
-                </tr>
-                <tr>
-                <td>10:15 – 10:40</td>
-                <td>Joohyung Yun</td>
-                <td>ReCG: Bottom-up JSON Schema Discovery Using a Repetitive Cluster-and-Generalize Framework</td>
-                </tr>
-                <tr>
-                <td>10:40 – 11:05</td>
-                <td>Haruki Ono</td>
-                <td>Period Analysis for Variable Stars Combining Periodogram and Phase-folding Methods</td>
-                </tr>
-                <tr>
-                <td>11:05 – 12:35</td>
-                <td>—</td>
-                <td><span class="tag">Lunch</span> Lunch break</td>
-                </tr>
-                <tr>
-                <td>12:35 – 13:00</td>
-                <td>Sungho Park</td>
-                <td>Effective Multimodal Retrieval Algorithm for Open Question Answering over Tables and Text</td>
-                </tr>
-                <tr>
-                <td>13:00 – 13:25</td>
-                <td>Zhang Haochen</td>
-                <td>Jellyfish: Instruction-Tuning Local LLMs for Data Preprocessing</td>
-                </tr>
-                <tr>
-                <td>13:30 – 14:30</td>
-                <td>—</td>
-                <td><span class="tag">Poster Session</span> Lightning introductions & browsing</td>
-                </tr>
-                <tr>
-                <td>15:00 – 18:00</td>
-                <td>Panel</td>
-                <td><span class="tag">Discussion</span> Developments in Advanced AI & DB Technologies (Graph DBMS, Vector DB, Large-Scale AI Modeling)</td>
-                </tr>
-            </tbody>
+              </tbody>
             </table>
-        </div>
+          </div>
 
-        <!-- ===== Day 2 ===== -->
-        <h2 class="day-title">Program <span class="day-chip">Oct. 25 (Sat)</span></h2>
-        <div class="table-wrap">
+          <!-- ===== Day 2 ===== -->
+          <h2 class="day-title">Program <span class="day-chip">Oct. 25 (Sat)</span></h2>
+          <div class="table-wrap">
             <table class="schedule">
-            <thead>
+              <thead>
                 <tr><th>Time</th><th>Speaker</th><th>Info</th></tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
+                <!-- Talks (25 min each) – morning -->
+                <tr class="type-talk"><td>09:30 – 09:55</td><td>TBD Speaker 1</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>09:55 – 10:20</td><td>TBD Speaker 2</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>10:20 – 10:45</td><td>TBD Speaker 3</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>10:45 – 11:10</td><td>TBD Speaker 4</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>11:10 – 11:35</td><td>TBD Speaker 5</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+
+                <!-- Lunch -->
                 <tr>
-                <td>08:30 – 09:30</td>
-                <td>Wook-Shin Han</td>
-                <td>How to Write Good Computer Science Papers</td>
+                  <td>11:35 – 13:00</td>
+                  <td>—</td>
+                  <td><span class="tag">Lunch</span> Lunch break</td>
+                </tr>
+
+                <!-- Talks (25 min each) – afternoon -->
+                <tr class="type-talk"><td>13:00 – 13:25</td><td>TBD Speaker 6</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>13:25 – 13:50</td><td>TBD Speaker 7</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>13:50 – 14:15</td><td>TBD Speaker 8</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>14:15 – 14:40</td><td>TBD Speaker 9</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+                <tr class="type-talk"><td>14:40 – 15:05</td><td>TBD Speaker 10</td><td><span class="tag">Talk</span> Placeholder title</td></tr>
+
+                <!-- Break (30m) -->
+                <tr>
+                  <td>15:05 – 15:35</td>
+                  <td>—</td>
+                  <td><span class="tag">Break</span> Coffee & networking</td>
+                </tr>
+
+                <!-- Poster (1h) -->
+                <tr>
+                  <td>15:35 – 16:35</td>
+                  <td>—</td>
+                  <td><span class="tag">Poster Session</span> Posters & demos</td>
+                </tr>
+
+                <!-- Dinner & Discussion -->
+                <tr>
+                  <td>18:00 – 19:30</td>
+                  <td>—</td>
+                  <td><span class="tag">Dinner</span> Conference dinner</td>
                 </tr>
                 <tr>
-                <td>09:30 – 09:55</td>
-                <td>TaeSung Lee</td>
-                <td>Schemaless Graph Engine for General-purpose Analytics</td>
+                  <td>19:30 – 20:30</td>
+                  <td>—</td>
+                  <td><span class="tag">Discussion</span> Open discussion & wrap-up</td>
                 </tr>
-                <tr>
-                <td>09:55 – 10:10</td>
-                <td>—</td>
-                <td><span class="tag">Break</span> Coffee break</td>
-                </tr>
-                <tr>
-                <td>10:10 – 10:35</td>
-                <td>Ryosuke Kikuchi</td>
-                <td>Temporal Graph Generation Using Motif Transition Probabilities and Inter-Motif Connections</td>
-                </tr>
-                <tr>
-                <td>10:35 – 11:00</td>
-                <td>HyukKyu Kang</td>
-                <td>Efficient Text Retrieval with Multi-vector Retrieval System</td>
-                </tr>
-                <tr>
-                <td>13:00 – 14:30</td>
-                <td>—</td>
-                <td>
-                    <span class="tag">Poster Session</span> Selected posters (examples):
-                    <ul class="mini">
-                    <li>Out-of-Distribution Query Problems in Cross-Modal Retrieval</li>
-                    <li>Automatic Database Knob Configuration Tuning</li>
-                    <li>Node-Aware Attention Mechanism for Distilling GNNs-to-MLP</li>
-                    <li>Fast Infinite Transformers for Long-Context Inference</li>
-                    <li>Improving Classical Chinese Text Retrieval with Qwen2-7B</li>
-                    </ul>
-                </td>
-                </tr>
-            </tbody>
+              </tbody>
             </table>
-        </div>
+          </div>
 
         </div>
         <!-- ===== /Program ===== -->
+
 
 
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}

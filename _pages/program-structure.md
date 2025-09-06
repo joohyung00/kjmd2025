@@ -1,5 +1,5 @@
 ---
-layout: custom_program
+layout: custom_programs
 title: "Program Structure"
 permalink: /program-structure/
 author_profile: false

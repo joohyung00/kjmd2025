@@ -48,7 +48,198 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-        {{ content }}
+
+
+        <!-- ===== Keynotes ===== -->
+        <div class="keynotes">
+
+        <style>
+            /* Pastel Blue palette (scoped) */
+            .keynotes{
+            --brand: #2a7ae2;
+            --bg:    #eef5ff;         /* card body */
+            --hdr:   #e7f0ff;         /* header chips / sub headers */
+            --br:    #cfe1ff;         /* borders */
+            --muted: #5976a8;         /* subtle text */
+            --shadow: rgba(42,122,226,.10);
+            }
+
+            /* Card */
+            details.kn-card{
+            background: var(--bg);
+            border: 1px solid var(--br);
+            border-radius: 16px;
+            box-shadow: 0 8px 22px var(--shadow);
+            margin: 14px 0;
+            overflow: hidden;
+            transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+            }
+            details.kn-card:hover{
+            box-shadow: 0 12px 32px rgba(42,122,226,.16);
+            border-color: #b9d1ff;
+            }
+            details.kn-card[open]{ transform: translateY(-1px); }
+
+            /* Header row (clickable) */
+            details.kn-card > summary{
+            list-style: none;
+            cursor: pointer;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 120px 1fr 24px; /* photo | content | toggle */
+            gap: 16px;
+            align-items: center;
+            }
+            details.kn-card > summary::-webkit-details-marker{ display:none; }
+
+            /* Photo (1:1) */
+            .kn-thumb{
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #dfeaff; /* placeholder */
+            box-shadow: inset 0 0 0 1px var(--br);
+            }
+            .kn-thumb img{
+            width:100%; height:100%; object-fit:cover; display:block;
+            }
+
+            /* Content in header */
+            .kn-topline{
+            display:flex; align-items:center; gap:.5rem; margin-bottom:.35rem;
+            flex-wrap:wrap;
+            }
+            .chip{
+            display:inline-block; font-weight:800; font-size:.8rem;
+            background: var(--hdr); color:#1f3b7b;
+            border:1px solid var(--br); padding:.2rem .55rem; border-radius:999px;
+            }
+            .chair{ color: var(--muted); font-size:.9rem; }
+
+            .kn-title{ margin:.15rem 0; line-height:1.35; font-weight:800; }
+            .kn-authors{ color:#1f2a44; font-weight:600; }
+            .kn-affil{ color:var(--muted); }
+
+            /* Toggle chevron */
+            .kn-toggle{ font-size:20px; color:#1f3b7b; opacity:.7; transition:transform .2s ease; }
+            details.kn-card[open] .kn-toggle{ transform: rotate(180deg); }
+
+            /* Body */
+            .kn-extra{
+            border-top: 1px dashed var(--br);
+            background: rgba(255,255,255,.55);
+            padding: 14px 16px 16px;
+            }
+
+            /* Sub toggles: Abstract/Bio */
+            details.kn-sub{
+            margin:.35rem 0 .5rem;
+            border:1px solid var(--br);
+            background:#fff;
+            border-radius:12px;
+            overflow:hidden;
+            }
+            details.kn-sub > summary{
+            cursor:pointer; list-style:none; padding:.6rem .8rem;
+            background: var(--hdr);
+            display:flex; align-items:center; justify-content:space-between;
+            font-weight:800; color:#1f3b7b;
+            }
+            details.kn-sub > summary::-webkit-details-marker{ display:none; }
+            details.kn-sub[open] > summary{ border-bottom:1px solid var(--br); }
+            .sub-arrow{ font-size:16px; opacity:.75; transition:transform .2s ease; }
+            details.kn-sub[open] .sub-arrow{ transform:rotate(180deg); }
+            .kn-sub-body{ padding:.85rem .95rem; color:#223249; line-height:1.65; }
+
+            /* Mobile */
+            @media (max-width: 576px){
+            details.kn-card > summary{ grid-template-columns: 1fr; }
+            .kn-toggle{ justify-self:end; }
+            }
+        </style>
+
+        <!-- ===== Keynote 1 (예시) ===== -->
+        <details class="kn-card">
+            <summary>
+            <div class="kn-thumb">
+                <img src="{{ '/assets/images/keynotes/kn1.jpg' | relative_url }}" alt="Stratos Idreos">
+            </div>
+            <div>
+                <div class="kn-topline">
+                <span class="chip">Keynote 1</span>
+                <span class="chair">Session Chair: Themis Palpanas (Université Paris Cité)</span>
+                </div>
+                <h3 class="kn-title">Alphabets, Grammars, Calculators, and the End of Hand-Crafted Systems</h3>
+                <div class="kn-authors">Stratos Idreos <span class="kn-affil">(Harvard University)</span></div>
+            </div>
+            <div class="kn-toggle" aria-hidden="true">▾</div>
+            </summary>
+
+            <div class="kn-extra">
+            <details class="kn-sub">
+                <summary>Abstract <span class="sub-arrow" aria-hidden="true">▾</span></summary>
+                <div class="kn-sub-body">
+                Data-centric computation is evolving rapidly as new data types, hardware and workloads appear.
+                This talk sketches a path from hand-crafted systems to automated “system calculators” that
+                compose storage formats, operators and architectures on demand to match each workload.
+                </div>
+            </details>
+
+            <details class="kn-sub">
+                <summary>Bio <span class="sub-arrow" aria-hidden="true">▾</span></summary>
+                <div class="kn-sub-body">
+                Stratos Idreos is Professor of Computer Science at Harvard University.
+                He directs the Harvard Data Systems Laboratory and works on data-centric system design
+                that adapts to hardware and workloads. His work has been recognized with awards including
+                early-career honors and contributions awards in the data systems community.
+                </div>
+            </details>
+            </div>
+        </details>
+
+        <!-- ===== Keynote 2 (예시) ===== -->
+        <details class="kn-card">
+            <summary>
+            <div class="kn-thumb">
+                <img src="{{ '/assets/images/keynotes/kn2.jpg' | relative_url }}" alt="Jane Doe">
+            </div>
+            <div>
+                <div class="kn-topline">
+                <span class="chip">Keynote 2</span>
+                <span class="chair">Session Chair: J. Kim (KAIST)</span>
+                </div>
+                <h3 class="kn-title">Systems for AI: From Data to Models and Back</h3>
+                <div class="kn-authors">Jane Doe <span class="kn-affil">(Stanford University)</span></div>
+            </div>
+            <div class="kn-toggle" aria-hidden="true">▾</div>
+            </summary>
+
+            <div class="kn-extra">
+            <details class="kn-sub">
+                <summary>Abstract <span class="sub-arrow" aria-hidden="true">▾</span></summary>
+                <div class="kn-sub-body">
+                We explore data management and systems co-design for modern AI pipelines: collecting,
+                cleaning, and serving data; training and serving large models; and closing the loop
+                with telemetry-driven improvements.
+                </div>
+            </details>
+
+            <details class="kn-sub">
+                <summary>Bio <span class="sub-arrow" aria-hidden="true">▾</span></summary>
+                <div class="kn-sub-body">
+                Jane Doe is a professor whose research spans data systems and machine learning,
+                focusing on scalable, reliable platforms for AI applications in industry and science.
+                </div>
+            </details>
+            </div>
+        </details>
+
+        </div>
+        <!-- ===== /Keynotes ===== -->
+
+
+
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 

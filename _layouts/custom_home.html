@@ -23,6 +23,7 @@ layout: default
     grid-auto-columns: 100%;
     transform: translateX(var(--x, 0%));
     transition: transform .6s ease;
+    touch-action: pan-y;
   }
   .kjmd-home .hero-carousel .slide {
     position: relative;
@@ -305,46 +306,66 @@ layout: default
           </section>
 
           <script>
-            // 간단한 캐러셀 (바닐라 JS)
             (function(){
               const el = document.querySelector('#home-hero');
               if(!el) return;
+
+              const slidesTrack = el.querySelector('.slides');
               const slides = Array.from(el.querySelectorAll('.slide'));
               const dotsWrap = el.querySelector('.dots');
-              let i = 0, n = slides.length, timer;
+              const btnNext = el.querySelector('.next');
+              const btnPrev = el.querySelector('.prev');
+
+              let i = 0, n = slides.length, timer = null, sx = null, dx = 0;
 
               function go(k){
                 i = (k + n) % n;
                 el.style.setProperty('--x', (-100 * i) + '%');
-                dotsWrap.querySelectorAll('.dot').forEach((d, j)=>d.setAttribute('aria-current', j===i));
+                const dots = dotsWrap.querySelectorAll('.dot');
+                dots.forEach((d, j)=>d.setAttribute('aria-current', j===i));
               }
               function next(){ go(i+1); }
               function prev(){ go(i-1); }
-              function auto(){
-                clearInterval(timer);
-                timer = setInterval(next, 6000);
-              }
+              function auto(){ clearInterval(timer); timer = setInterval(next, 6000); }
 
-              // dots 생성
-              dotsWrap.innerHTML = slides.map((_, j)=>`<button class="dot" aria-label="Go to slide ${j+1}"></button>`).join('');
+              // Dots
+              dotsWrap.innerHTML = slides.map((_, j)=>(
+                `<button class="dot" type="button" aria-label="Go to slide ${j+1}"></button>`
+              )).join('');
               dotsWrap.addEventListener('click', e=>{
                 const b = e.target.closest('.dot');
                 if(!b) return;
-                go([...dotsWrap.children].indexOf(b)); auto();
+                e.stopPropagation(); // don't bubble into swipe area
+                const dots = [...dotsWrap.querySelectorAll('.dot')];
+                go(dots.indexOf(b));
+                auto();
               });
 
-              el.querySelector('.next').addEventListener('click', ()=>{ next(); auto(); });
-              el.querySelector('.prev').addEventListener('click', ()=>{ prev(); auto(); });
+              // Arrows
+              btnNext.addEventListener('click', e=>{ e.stopPropagation(); next(); auto(); });
+              btnPrev.addEventListener('click', e=>{ e.stopPropagation(); prev(); auto(); });
 
-              // 터치 스와이프
-              let sx=0, dx=0;
-              el.addEventListener('pointerdown', e=>{ sx=e.clientX; dx=0; el.setPointerCapture(e.pointerId); });
-              el.addEventListener('pointermove', e=>{ if(!sx) return; dx=e.clientX-sx; });
-              el.addEventListener('pointerup', ()=>{ if(Math.abs(dx)>40) (dx<0?next:prev)(); sx=0; auto(); });
+              // Swipe (bind to slides track only; ignore when starting on controls)
+              function start(e){
+                if (e.target.closest('.hero-btn, .dot')) return; // don't hijack control clicks
+                sx = e.clientX; dx = 0;
+                if (slidesTrack.setPointerCapture) slidesTrack.setPointerCapture(e.pointerId);
+              }
+              function move(e){ if (sx == null) return; dx = e.clientX - sx; }
+              function end(){ 
+                if (sx == null) return;
+                if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+                sx = null; dx = 0; auto();
+              }
+
+              slidesTrack.addEventListener('pointerdown', start, {passive:true});
+              slidesTrack.addEventListener('pointermove', move, {passive:true});
+              slidesTrack.addEventListener('pointerup', end);
 
               go(0); auto();
             })();
           </script>
+
 
           <!-- ===== Overview ===== -->
           <section class="section">
